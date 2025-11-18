@@ -483,6 +483,9 @@ void NetManagerPrivate::onItemAdded(const QString &parentID, NetItemPrivate *ite
         addItem(NetItemNew(WirelessMineItem, item->id() + ":Mine"), nullptr);
         NetWirelessOtherItemPrivate *otherItem = NetItemNew(WirelessOtherItem, item->id() + ":Other");
         addItem(otherItem, item);
+        if (item->getChildrenNumber() == 1) {
+            otherItem->updateexpanded(true);
+        }
         addItem(NetItemNew(WirelessHiddenItem, item->id() + ":Hidden"), otherItem);
         ++m_deviceCount[WirelessDeviceIndex];
     } break;
